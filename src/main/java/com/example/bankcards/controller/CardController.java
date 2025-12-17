@@ -1,26 +1,23 @@
 package com.example.bankcards.controller;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.example.bankcards.dto.CardDto;
+import com.example.bankcards.dto.CardRequest;
+import com.example.bankcards.service.CardService;
+import org.springframework.web.bind.annotation.*;
+
 
 @RestController
-@RequestMapping("/cards")
+@RequestMapping("/api/cards")
 public class CardController {
+    private final CardService cardService;
 
-    @GetMapping
-    public String getAll() {
-        return "GET /cards - список карт";
+    public CardController(CardService cardService) {
+        this.cardService = cardService;
     }
 
-    @PostMapping
-    public String create() {
-        return "POST /cards - создание карты";
+    @PostMapping("/create")
+    public CardDto createCard(@RequestBody CardRequest request) {
+        return this.cardService.create(request);
     }
 
-    @GetMapping("/test")
-    public String test() {
-        return "GET /cards/test test";
-    }
 }

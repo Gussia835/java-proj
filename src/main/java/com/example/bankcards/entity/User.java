@@ -1,5 +1,6 @@
 package com.example.bankcards.entity;
 
+import io.jsonwebtoken.Jwts;
 import jakarta.persistence.*;
 import com.example.bankcards.entity.Role;
 
@@ -31,5 +32,6 @@ public class User {
 
     public void setRole(Role role) { this.role = role; }
     public Role getRole() { return role; }
+
 
 }
